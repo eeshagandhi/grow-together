@@ -4,7 +4,7 @@ import java.sql.*;
 public class Sell extends Frame 
 {
 	Button sellBookButton;
-	TextField s_idText, b_idText;
+	TextField s_idText, b_idText,dayText;
 	TextArea errorText;
 	Connection connection;
 	Statement statement;
@@ -49,7 +49,7 @@ public class Sell extends Frame
 				try 
 				{
 				  			  
-				  String query= "INSERT INTO sells VALUES(" + s_idText.getText() + ", " + "'" + b_idText.getText() + ")";
+				  String query= "INSERT INTO sells VALUES(" + s_idText.getText() + ", " + "'" + b_idText.getText() + ", " + "'" + dayText.getText()+")";
 				  int i = statement.executeUpdate(query);
 				  errorText.append("\nInserted " + i + " rows successfully");
 				} 
@@ -63,6 +63,7 @@ public class Sell extends Frame
 	
 		s_idText = new TextField(15);
 		b_idText = new TextField(15);
+		dayText  = new TextField(15);
 		
 		
 		errorText = new TextArea(10, 40);
@@ -74,12 +75,17 @@ public class Sell extends Frame
 		first.add(s_idText);
 		first.add(new Label("Book ID:"));
 		first.add(b_idText);
+		first.add(new Label("Day:"));
+		first.add(dayText);
 		
 		first.setBounds(125,90,200,100);
 		
 		Panel second = new Panel(new GridLayout(4, 1));
 		second.add(sellBookButton);
-        second.setBounds(125,220,150,100);         
+        	second.setBounds(125,220,150,100); 
+		Panel third = new Panel();
+		third.add(errorText);
+		third.setBounds(125,320,300,200);
 		
 		
 		
@@ -87,9 +93,10 @@ public class Sell extends Frame
 
 		add(first);
 		add(second);
+		add(third);
 		
 	    
-		
+		setTitle("Selling a book");
 		setSize(500, 600);
 		setVisible(true);
 	}
