@@ -4,7 +4,7 @@ import java.sql.*;
 public class Sell extends Frame 
 {
 	Button sellBookButton;
-	TextField s_idText, b_idText,dayText;
+	TextField s_idText, b_idText,dayText,profitText;
 	TextArea errorText;
 	Connection connection;
 	Statement statement;
@@ -49,7 +49,7 @@ public class Sell extends Frame
 				try 
 				{
 				  			  
-				  String query= "INSERT INTO sells VALUES(" + s_idText.getText() + ", " + "'" + b_idText.getText() + ", " + "'" + dayText.getText()+")";
+				  String query= "INSERT INTO sells VALUES(" + s_idText.getText() + ", " + "'" + b_idText.getText() + ", " + "'" + dayText.getText()+", " + "'" + profitText.getText()+ ")";
 				  int i = statement.executeUpdate(query);
 				  errorText.append("\nInserted " + i + " rows successfully");
 				} 
@@ -63,7 +63,9 @@ public class Sell extends Frame
 	
 		s_idText = new TextField(15);
 		b_idText = new TextField(15);
-		dayText  = new TextField(15);
+		dayText = new TextField(15);
+		profitText = new TextField(15);
+		
 		
 		
 		errorText = new TextArea(10, 40);
@@ -77,6 +79,9 @@ public class Sell extends Frame
 		first.add(b_idText);
 		first.add(new Label("Day:"));
 		first.add(dayText);
+		first.add(new Label("Profit:"));
+		first.add(profitText);
+		
 		
 		first.setBounds(125,90,200,100);
 		
@@ -97,6 +102,9 @@ public class Sell extends Frame
 		
 	    
 		setTitle("Selling a book");
+		Color clr = new Color(230, 190, 250);
+		setBackground(clr); 
+		setFont(new Font("Cambria", Font.BOLD, 15)); 
 		setSize(500, 600);
 		setVisible(true);
 	}
